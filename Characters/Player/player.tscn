@@ -1,13 +1,33 @@
 [gd_scene load_steps=4 format=3 uid="uid://f3m1m4hhr7u5"]
 
-[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_ehk0p"]
 [ext_resource type="Texture2D" uid="uid://ba58md865w1eq" path="res://Assets/images/Sprite_sheet.png" id="2_ovu5q"]
+
+[sub_resource type="GDScript" id="GDScript_y7q7k"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 80
+@export var health:int = 100
+
+func get_input():
+	var input_direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	velocity = input_direction.normalized() * speed 
+
+func _physics_process(delta):
+	get_input()
+
+func warm_self():
+	print(\"warming self\")
+# How do have a timer that has been triggered do something when it is timed out? do I need 2 timers?
+
+func cool_self():
+	print(\"cooling down\")
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqua0"]
 size = Vector2(10, 12)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_ehk0p")
+script = SubResource("GDScript_y7q7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ovu5q")
@@ -18,3 +38,6 @@ vframes = 4
 visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_yqua0")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collide_with_areas = true

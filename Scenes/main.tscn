@@ -14,8 +14,6 @@ layer_0/tile_data = PackedInt32Array(327679, 131072, 1, 458751, 131072, 0, 78643
 [node name="Player" parent="." instance=ExtResource("2_fi6hi")]
 position = Vector2(303, 180)
 script = ExtResource("3_ho3if")
-speed = 50
-health = 100
 
 [node name="Campfire" parent="." instance=ExtResource("4_xycvk")]
 position = Vector2(320, 180)

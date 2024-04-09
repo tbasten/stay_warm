@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbyslxftvg7rd"]
+[gd_scene load_steps=6 format=3 uid="uid://bbyslxftvg7rd"]
 
 [ext_resource type="Script" path="res://Scenes/Prefabs/campfire/campfire.gd" id="1_jt6bd"]
 [ext_resource type="Texture2D" uid="uid://ba58md865w1eq" path="res://Assets/images/Sprite_sheet.png" id="1_tjdqf"]
+[ext_resource type="AudioStream" uid="uid://cfkajpinvqvy7" path="res://Assets/audio/636707__newlocknew__fireburn_burning-campfireflashingdecay-and-sustain_em_15lrs.wav" id="3_vwkp4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qekvs"]
 radius = 6.0
@@ -30,6 +31,9 @@ shape = SubResource("CapsuleShape2D_qekvs")
 
 [node name="campfireEffectAreaCollision" type="CollisionShape2D" parent="campfireEffectArea"]
 shape = SubResource("CircleShape2D_f514g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vwkp4")
 
 [connection signal="body_entered" from="campfireEffectArea" to="." method="_on_campfire_effect_area_body_entered"]
 [connection signal="body_exited" from="campfireEffectArea" to="." method="_on_campfire_effect_area_body_exited"]
