@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbyslxftvg7rd"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/campfire/campfire.gd" id="1_jt6bd"]
+[ext_resource type="Texture2D" uid="uid://ba58md865w1eq" path="res://Assets/images/Sprite_sheet.png" id="1_tjdqf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qekvs"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f514g"]
+radius = 25.02
+
+[node name="Campfire" type="Node2D"]
+script = ExtResource("1_jt6bd")
+
+[node name="campfireSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tjdqf")
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="campfireStaticBody" type="StaticBody2D" parent="."]
+
+[node name="campfireCollision" type="CollisionShape2D" parent="campfireStaticBody"]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_qekvs")
+
+[node name="campfireEffectArea" type="Area2D" parent="."]
+
+[node name="campfireEffectAreaCollision" type="CollisionShape2D" parent="campfireEffectArea"]
+shape = SubResource("CircleShape2D_f514g")
+
+[connection signal="body_entered" from="campfireEffectArea" to="." method="_on_campfire_effect_area_body_entered"]
+[connection signal="body_exited" from="campfireEffectArea" to="." method="_on_campfire_effect_area_body_exited"]
